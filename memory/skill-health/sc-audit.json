@@ -1,0 +1,16 @@
+{
+  "skill": "sc-audit",
+  "last_analyzed": "2026-10-13T14:49:03Z",
+  "quality_score": 3,
+  "assessment": "Specific, plausibly real audit result (chainid 4663, 0 confirmed/8 refuted, OZ 4.9.6 match), but the clean verdict rests on a Slither run that failed to compile, the substance lives in an external report rather than the output, and the report link points to an uncommitted file.",
+  "flags": [],
+  "avg_score": 3,
+  "history": [
+    {
+      "date": "2026-10-13",
+      "score": 3,
+      "ts": "2026-10-13T14:49:03Z",
+      "harness": "claude"
+    }
+  ]
+}
