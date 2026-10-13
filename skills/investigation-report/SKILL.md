@@ -333,6 +333,8 @@ Only render sections for checks that were selected. An `unavailable` section mea
 
 Send **one** consolidated alert via `./notify` — never one per check (don't double-notify).
 
+- **`--notify=always` override:** if `${var}` contains `--notify=always`, ALWAYS send the full consolidated report via `./notify -f <file>` (one call), even when the composite is clean — lead with the one-line verdict, then a compact per-check table (rug, contract, deployer, holders, honeypot, lp) and the caveats. This publishes the report to the dashboard feed. Without the flag, the trigger rules below apply unchanged.
+
 - **Single-check run:** use that check's own notify trigger and format verbatim:
   - `rug` → notify if verdict ≥ `ELEVATED`.
   - `contract` → notify if a live, non-renounced power in {upgrade, mint, blacklist, drain} exists.
