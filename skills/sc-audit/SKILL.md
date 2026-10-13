@@ -71,6 +71,7 @@ else MODE=repo; fi                                                              
     scroll)               CID=534352 ;; linea)         CID=59144 ;;
     zksync)               CID=324 ;;    blast)         CID=81457 ;;
     sepolia)              CID=11155111 ;; base-sepolia) CID=84532 ;;
+    robinhood|rh)         CID=4663 ;;
     *) echo "unknown-chain: $CHAIN (add its Etherscan V2 chainid to S1 to support it)"; exit 0 ;;
   esac
   echo "onchain target: chain=$CHAIN cid=$CID addr=$ADDR"
