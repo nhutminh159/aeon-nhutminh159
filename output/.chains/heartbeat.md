@@ -1,22 +1,13 @@
-**HEARTBEAT_OK · STATUS_PAGE=OK**. Nothing needs attention, so I sent no notification.
+HEARTBEAT_OK · STATUS_PAGE=OK. This was the default fleet check, and nothing needs attention, so no notification went out.
 
-This was the default fleet check (no focus area or brief requested).
-
-| Check | Result |
-|---|---|
-| P0: failed or stuck skills | None. `investigation-report` succeeded 2 of 2 runs (last at 16:22 UTC) and `sc-audit` 1 of 1 (14:49 UTC). Neither has any failures in a row. |
-| P1: stalled PRs and urgent issues | No open PRs and no open issues labelled `urgent`. |
-| P2: flagged memory items | None. `MEMORY.md` still holds only the setup defaults (set up notification channels, enable more skills). |
-| P3: missing scheduled skills | None. Heartbeat is the only scheduled skill turned on in `aeon.yml`. It has no entry in `memory/cron-state.json` yet, which is expected because this is its first run. |
-| Open issues (`memory/issues/INDEX.md`) | 0 |
-
-**Status page:** I rewrote `docs/status.md`.
-- Overall status is 🟢 OK, updated 2026-10-13 19:57 UTC.
-- Next scheduled run is heartbeat at 08:00 UTC tomorrow.
-- I added `sc-audit` and `investigation-report` to the skill table even though they aren't scheduled, because they have recorded runs.
-- There's no Token pulse section because there is no token-report file yet.
+- **Failed, stuck or broken skills:** none. Every recorded run has succeeded: heartbeat 1 of 1, sc-audit 1 of 1, investigation-report 2 of 2, and nothing has failed twice in a row. Heartbeat's own last success was 2026-10-13 19:57 UTC, about 17 hours ago, which is inside its 36-hour window.
+- **Pull requests and issues:** 0 open PRs, 0 GitHub issues labeled urgent, and 0 open entries in `memory/issues/INDEX.md`.
+- **Memory follow-ups:** none. The "Next Priorities" in `MEMORY.md` are still the setup defaults.
+- **Missing scheduled skills:** none. Heartbeat (daily at 08:00 UTC) is the only skill enabled in `aeon.yml`, and it is up to date.
+- **Status page:** `docs/status.md` now shows 🟢 OK, updated 2026-10-14 13:00 UTC. All three skills with recorded runs are listed, newest first, and the next run is heartbeat at 08:00 UTC on 2026-10-15. The page has no Token pulse section because there are no `token-report` files.
 
 ## Summary
-- **Did:** ran the fleet check against `memory/cron-state.json`, the GitHub PR and issue lists, `MEMORY.md` and `aeon.yml`, then regenerated the public status page.
-- **Files modified:** `docs/status.md` and `memory/logs/2026-10-13.md` (added a `### heartbeat` entry with `mode: ambient`).
-- **Follow-up:** none needed now. `STRATEGY.md` and `MEMORY.md` still contain the unconfigured defaults; filling them in would give later checks something specific to watch for.
+- **What I did:** checked failed and stuck skills, open PRs and issues, memory follow-ups and missing scheduled skills, then rewrote the status page.
+- **Files changed:** `docs/status.md` (rewritten in full) and `memory/logs/2026-10-14.md` (created, with a `### heartbeat` entry, `mode: ambient`).
+- **Notification:** none sent, because the run was clean.
+- **Follow-up:** nothing required. The operator's `STRATEGY.md` and the Next Priorities in `MEMORY.md` are still the unconfigured defaults, which is worth fixing when convenient.
