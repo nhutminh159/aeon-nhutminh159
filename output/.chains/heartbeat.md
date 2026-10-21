@@ -1,20 +1,15 @@
-HEARTBEAT_OK · STATUS_PAGE=OK
+**HEARTBEAT_OK · STATUS_PAGE=OK**
 
-I ran the default fleet check (no area set). Nothing needs attention, so I sent no notification.
+Nothing needs attention today, so no notification went out.
 
-- **Failed, stuck or degraded skills:** none.
-  - heartbeat: 7 of 7 runs succeeded. Its last success was 2026-10-19 11:01 UTC, about 23 hours ago, which is under the 36-hour staleness limit.
-  - sc-audit: 1 of 1 run succeeded.
-  - investigation-report: 2 of 2 runs succeeded.
-- **Pull requests and urgent issues:** no open PRs and no issues labelled urgent.
-- **Items flagged in memory:** none. The "Next Priorities" in `memory/MEMORY.md` are still the setup defaults.
-- **Missing scheduled skills:** none. heartbeat is the only scheduled skill enabled in `aeon.yml`, and it is running.
-- **Token pulse:** left off the status page because there is no `output/articles/token-report-*.md`.
-- **Open issues:** 0 in `memory/issues/INDEX.md`.
+- **Failed or stuck skills:** none. All 3 skills with recorded runs have succeeded every time: heartbeat 8 of 8, investigation-report 2 of 2, sc-audit 1 of 1. Heartbeat's last success was 2026-10-20 10:02 UTC, about 24h ago, which is inside the 36h limit.
+- **PRs and issues:** no open PRs, no GitHub issues labelled urgent, and nothing open in `memory/issues/INDEX.md`.
+- **Memory:** nothing flagged for follow-up. The "Next Priorities" in `memory/MEMORY.md` are still the setup defaults.
+- **Missing scheduled skills:** heartbeat is the only enabled scheduled skill, so nothing is missing.
+- **Token pulse:** left off the status page because there is no token report in `output/articles/`.
 
 ## Summary
-- **What I did:** checked the fleet, rewrote the public status page (overall 🟢 OK, updated 2026-10-20 10:02 UTC, next run heartbeat at 08:00 UTC on 2026-10-21) and logged the run.
-- **Files changed:**
-  - `docs/status.md` (rewritten)
-  - `memory/logs/2026-10-20.md` (created)
-- **Follow-up:** none needed.
+- Ran the default daily fleet-health check.
+- Rewrote `docs/status.md`: overall 🟢 OK, updated 2026-10-21 09:40 UTC, next run heartbeat at 08:00 UTC on 2026-10-22.
+- Created `memory/logs/2026-10-21.md` with the `### heartbeat` entry.
+- Follow-up: none needed. Notification channels are still unset, as the default setup priorities note.
