@@ -34,10 +34,6 @@ Designed to **degrade gracefully**: each selected section runs independently, so
 ## Config
 
 - Subject = the first token of `${var}` (validate: `0x` + 40 hex). Chain = Base (`chainid=8453`, explorer `basescan.org`).
-- **Chain override (`--chain=`)** — optional flag in `${var}`, default `base`. When `--chain=robinhood` (alias `rh`), run every step below on **Robinhood Chain** instead of Base, substituting throughout: `chainid=8453` → `chainid=4663` (Etherscan v2 covers it), the RPC `${BASE_RPC_URL:-https://mainnet.base.org}` → `https://rpc.mainnet.chain.robinhood.com`, and explorer links `basescan.org` → `robin.etherscan.io`. Robinhood-specific notes:
-  - `tokenholderlist` may be a paid-tier Etherscan endpoint. If it errors or returns nothing, rebuild the holder table from `Transfer` logs via RPC `eth_getLogs` from the token's creation block (chunked block ranges), net per address, then confirm the top balances with `balanceOf` — label it `holders: reconstructed from Transfer logs`.
-  - If the token exposes `mainPool()` (Flap-style tax tokens), use that address as the primary pool candidate for `lp` and as the AMM counterparty when tagging holders. Also read `taxProcessor()` / `dividendContract()` and tag those addresses as protocol contracts (not whales).
-  - Flap tax tokens are EIP-1167 clones: for `contract`, read the implementation from the `0x363d3d37…` runtime code and report the clone's own init params (`buyTaxRate`, `sellTaxRate`, `owner`).
 - **Etherscan v2 unified API** (`https://api.etherscan.io/v2/api?chainid=8453&…`) — used by the `rug`, `contract`, `deployer`, `holders` checks. Works **keyless** at a lower rate limit.
 - **Base RPC** (`${BASE_RPC_URL:-https://mainnet.base.org}`) — used by `honeypot`, `lp`, and the `eth_call`/`eth_getLogs`/`eth_getStorageAt`/`eth_getCode` reads inside the other checks. Keyless; any standard JSON-RPC endpoint works.
 - Secrets (all **optional**):
@@ -332,8 +328,6 @@ Only render sections for checks that were selected. An `unavailable` section mea
 ### Notify
 
 Send **one** consolidated alert via `./notify` — never one per check (don't double-notify).
-
-- **`--notify=always` override:** if `${var}` contains `--notify=always`, ALWAYS send the full consolidated report via `./notify -f <file>` (one call), even when the composite is clean — lead with the one-line verdict, then a compact per-check table (rug, contract, deployer, holders, honeypot, lp) and the caveats. This publishes the report to the dashboard feed. Without the flag, the trigger rules below apply unchanged.
 
 - **Single-check run:** use that check's own notify trigger and format verbatim:
   - `rug` → notify if verdict ≥ `ELEVATED`.
